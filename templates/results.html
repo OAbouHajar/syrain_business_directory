@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block body %}
+
+<div class="page2">
+    <div class="result">
+        <span class="searchResults"> The Search results For : </span>
+        <span id="resultsLable" class=" resultsLable ">  {{searched_text}}</span>
+
+
+    </div>
+
+    <form action='/'>
+        <button class=" button button3 buttonBack"> Home </button>
+    </form>
+</div>
+
+
+
+
+{% endblock %}

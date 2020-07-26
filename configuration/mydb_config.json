@@ -1,0 +1,7 @@
+{
+    "apiKey": "AIzaSyBa_oAgm7dmE-sFGGm8XG7HYs0gWxVFyJ8",
+    "authDomain": "projecteih.firebaseio.com",
+    "databaseURL": "https://projecteih.firebaseio.com",
+    "storageBucket": "projecteih.appspot.com",
+    "serviceAccount": "configuration/projecteih-firebase-adminsdk-dmd9b-dfbc30ba25.json"
+}

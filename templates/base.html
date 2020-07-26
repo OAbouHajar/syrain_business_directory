@@ -1,0 +1,46 @@
+<!-- EIH HTML CODE -->
+<!-- AUTHOR: OSAMA ABOU HAJAR -->
+<!-- Institute of Technology Carlow -->
+<!-- STUDENT ID: C002201315 -->
+<!-- DATE: 20/04/2020 -->
+<!-- Emergency Info Hub (EIH), Is a central website helps the emergency services to prepare for,
+     respond to & recover from disaster, by providing all needed data for the targeted building 
+     (E.g. Number of people, area size and emergency exits).
+The main objective of this project is giving the number of trapped people under rubbles or inside a building,
+ by tracking their number using a simple movement sensor fitted on the main gate and face detection technology, 
+ and save this number to the cloud to be used when a disaster happens.
+
+ -->
+<!doctype html>
+<html>
+
+<head>
+    <title>SBDI - Syrian Business Directory
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/EIH.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    </script>
+    <link rel="icon" type="image/png" href="static/logo.png">
+
+</head>
+
+<body>
+    <!-- TO INCLUDE THE MENU AND LOGIN PAGES ALL OVER THE WEBSITE -->
+{% include 'nav.html' %}
+    <h1>{{ the_title }}</h1>
+
+    {% block body %} {% endblock %}
+
+    <div class="footer"> &copy; 2020 by Osama Abou Hajar. All Rights Reserved.</div>
+    <div class="socialMedia">
+        <a href="https://github.com/OAbouHajar" class="fa fa-github" target="_blank"></a>
+        <a href="https://www.linkedin.com/in/osamaabouhajar/" class="fa fa-linkedin" target="_blank"></a>
+        <a href="http://glasnost.itcarlow.ie/~softeng4/C00220135/index.html" class="fa fa-rss" target="blank"></a>
+    </div>
+</body>
+
+</html>
