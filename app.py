@@ -28,13 +28,33 @@ app.secret_key = os.urandom(32)
 def route():
     return render_template("index.html" )
 
-@app.route("/result")
+@app.route("/result", methods=['GET'])
 def result():
-    return render_template("results.html" )
+    select = 1
+    select = request.args.get('countySearch')
+    print(select)
+    return render_template("results.html" , select=select)
 
 @app.route("/addBusiness")
 def add_business():
     return render_template("addBusiness.html" )
+
+@app.route("/addProcess", methods=['POST'])
+def add_business_process():
+    name = request.form.get('name')
+    address = request.form.get('address')
+    countesAdd = request.form.get('countesAdd')
+    phone = request.form.get('phone')
+    email = request.form.get('email')
+    busSector = request.form.get('busSector')
+    googleUrl = request.form.get('googleUrl')
+    busDesc = request.form.get('busDesc')
+    select = request.form.get('syrianHire')
+
+    return render_template("index.html" )
+
+
+
 @app.route("/aboutus")
 def aboutus():
     return render_template("aboutus.html",)

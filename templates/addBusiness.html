@@ -1,74 +1,106 @@
+<div class="logoTop">
+            <img src="static/logo.png" alt="Girl in a jacket" width="100">
+</div>
+
 {% extends "base.html" %} {% block body %}
 
 <div class="page2">
     <div class="result">
-        <span class="searchResults"> ENTER THE NEW BUISNESS DETAILS PLEASE : </span>
-        <span id="resultsLable" class=" resultsLable ">  {{searched_text}}</span>
-        <br><br><br>
-        <input id="pac-input" name='name' type="text" placeholder="Business Name:  (اسم العمل)" required>
-        <hr>
-        <input id="pac-input" name='address' type="text" placeholder="Address: (العنوان)" required>
-        <hr>
-    <select name="countesAdd" id="countes">
-    <option value="" disabled selected hidden>Select County Please</option>
-    <option value="Antrim">Antrim</option>
-    <option value="Armagh">Armagh</option>
-    <option value="Carlow">Carlow</option>
-    <option value="Cavan">Cavan</option>
-    <option value="Clare">Clare</option>
-    <option value="Cork">Cork</option>
-    <option value="Derry">Derry</option>
-    <option value="Donegal">Donegal</option>
-    <option value="Down">Down</option>
-    <option value="Dublin">Dublin</option>
-    <option value="Fermanagh">Fermanagh</option>
-    <option value="Galway">Galway</option>
-    <option value="Kerry">Kerry</option>
-    <option value="Kildare">Kildare</option>
-    <option value="Kilkenny">Kilkenny</option>
-    <option value="Laois">Laois</option>
-    <option value="Leitrim">Leitrim</option>
-    <option value="Limerick">Limerick</option>
-    <option value="Longford">Longford</option>
-    <option value="Louth">Louth</option>
-    <option value="Mayo">Mayo</option>
-    <option value="Meath">Meath</option>
-    <option value="Monaghan">Monaghan</option>
-    <option value="Offaly">Offaly</option>
-    <option value="Roscommon">Roscommon</option>
-    <option value="Sligo">Sligo</option>
-    <option value="Tipperary">Tipperary</option>
-    <option value="Tyrone">Tyrone</option>
-    <option value="Waterford">Waterford</option>
-    <option value="Westmeath">Westmeath</option>
-    <option value="Wexford">Wexford</option>
-    <option value="Wicklow">Wicklow</option>
-  </select>
 
-        <hr>
-        <input id="pac-input" name='thelocation' type="number" placeholder="Phone Number: رقم الهاتف" required>
-        <hr>
-        <input id="pac-input" name='thelocation' type="text" placeholder="Email Address: الإيميل" required>
-        <hr>
-        <input id="pac-input" name='thelocation' type="text" placeholder="Google Map address or website. الموقع او رابط العنوان على خرائط جوجل" required>
-        <hr>
-        <input id="pac-input" name='thelocation' type="text" placeholder="Phone Number: رقم الهاتف" required>
-        <hr>
-        <input id="pac-input" name='thelocation' type="text" placeholder="Buesniess Description: وصف العمل" required>
-        <hr>
-    <select name="syrianHire" id="syrian">
-    <option value="" disabled selected hidden>Interested in Hire Syrian employee? مهتم بتوظيف موظف سوريين؟</option>
-    <option value="Antrim">Antrim</option>
-    <option value="Armagh">Armagh</option>
+        <form action='/addProcess' method="POST">
+            <img src="static/shop.png" alt="Girl in a jacket" width="40" height="40">
+            <span class="searchResults">Add Business</span>
+            <br><br><br>
+            <label>Business Name:  (اسم العمل)</label>
+                        <br>
+            <input id="pac-input" name='name' type="text" placeholder="اسم العمل" required>
+            <hr>
+            <label>Address: (العنوان)</label>
+            <br>
+            <textarea id="pac-input" name='address' type="text" placeholder="العنوان" required></textarea>
+            <hr>
+            <label>Select County Please</label>
+            <br>
+            <select name="countesAdd" id="countes">
+                <option value="" disabled selected hidden>اختر مقاطعتك</option>
+                <option value="Antrim">Antrim</option>
+                <option value="Armagh">Armagh</option>
+                <option value="Carlow">Carlow</option>
+                <option value="Cavan">Cavan</option>
+                <option value="Clare">Clare</option>
+                <option value="Cork">Cork</option>
+                <option value="Derry">Derry</option>
+                <option value="Donegal">Donegal</option>
+                <option value="Down">Down</option>
+                <option value="Dublin">Dublin</option>
+                <option value="Fermanagh">Fermanagh</option>
+                <option value="Galway">Galway</option>
+                <option value="Kerry">Kerry</option>
+                <option value="Kildare">Kildare</option>
+                <option value="Kilkenny">Kilkenny</option>
+                <option value="Laois">Laois</option>
+                <option value="Leitrim">Leitrim</option>
+                <option value="Limerick">Limerick</option>
+                <option value="Longford">Longford</option>
+                <option value="Louth">Louth</option>
+                <option value="Mayo">Mayo</option>
+                <option value="Meath">Meath</option>
+                <option value="Monaghan">Monaghan</option>
+                <option value="Offaly">Offaly</option>
+                <option value="Roscommon">Roscommon</option>
+                <option value="Sligo">Sligo</option>
+                <option value="Tipperary">Tipperary</option>
+                <option value="Tyrone">Tyrone</option>
+                <option value="Waterford">Waterford</option>
+                <option value="Westmeath">Westmeath</option>
+                <option value="Wexford">Wexford</option>
+                <option value="Wicklow">Wicklow</option>
+            </select>
+            <hr>
+            <label>Select Your Business Please</label>
+            <br>
+             <select name="busSector" id="busSector">
+                <option value="" disabled selected hidden>قطاع العمل</option>
+                <option value="Car Maintenance">Car Maintenance (صيانه السيارات)</option>
+                <option value="Technology">Technology (التكنولوجيا)</option>
+                <option value="Wholesale">Wholesale (بيع بالجمله)</option>
+                <option value="Retail">Retail (بيع بالتجزئه)</option>
+                <option value="Transportation">Transportation (المواصلات)</option>
+                <option value="Restaurants">Restaurants (مطاعم)</option>
+            </select>
+            <hr>
+            <label> Phone Number:</label>
+            <br>
+            <input id="pac-input" name='phone' type="Tel" placeholder="رقم الهاتف" required>
+            <hr>
+            <label> Email Address:</label>
+            <br>
+            <input id="pac-input" name='email' type="Email" placeholder="الإيميل" required>
+            <hr>
+            <label>Google Map address or website</label>
+            <br>
+            <input id="pac-input" name='googleUrl' type="text" placeholder="الموقع او رابط العنوان على خرائط جوجل" required>
+            <hr>     
+            <label> Buesniess Description</label>
+            <br>
+            <textarea id="pac-input" name='busDesc' type="text" placeholder="وصف العمل" required></textarea>
+            <hr>
+            <label>Interested in Hiring Syrian employee ?</label>
+            <br>
+            <select name="syrianHire" id="syrian">
+                <option value="" disabled selected hidden>مهتم بتوظيف موظف سوريين؟</option>
+                <option value="yes">YES</option>
+                <option value="no">NO</option>
+            </select>
+            <br>
 
+
+            <button class=" buttonAdd button4 buttonAddsimple"> ADD BUSINESS </button>
+        </form>
     </div>
-
     <form action='/'>
         <button class=" button button3 buttonBack"> Home </button>
     </form>
 </div>
-
-
-
 
 {% endblock %}

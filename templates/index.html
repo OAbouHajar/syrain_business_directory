@@ -6,49 +6,52 @@
         <div class="center" id="p1">
             <!-- <img src="static/logo.png" class="center logo"></img> -->
             <div class="center logo"></div>
-            <h4>Syrian business directory / Ireland</h4>
-        </div>
-
-        <form action="/">
-  <select name="countes" id="cars">
-    <option value="" disabled selected hidden>Select County Please</option>
-    <option value="Antrim">Antrim</option>
-    <option value="Armagh">Armagh</option>
-    <option value="Carlow">Carlow</option>
-    <option value="Cavan">Cavan</option>
-    <option value="Clare">Clare</option>
-    <option value="Cork">Cork</option>
-    <option value="Derry">Derry</option>
-    <option value="Donegal">Donegal</option>
-    <option value="Down">Down</option>
-    <option value="Dublin">Dublin</option>
-    <option value="Fermanagh">Fermanagh</option>
-    <option value="Galway">Galway</option>
-    <option value="Kerry">Kerry</option>
-    <option value="Kildare">Kildare</option>
-    <option value="Kilkenny">Kilkenny</option>
-    <option value="Laois">Laois</option>
-    <option value="Leitrim">Leitrim</option>
-    <option value="Limerick">Limerick</option>
-    <option value="Longford">Longford</option>
-    <option value="Louth">Louth</option>
-    <option value="Mayo">Mayo</option>
-    <option value="Meath">Meath</option>
-    <option value="Monaghan">Monaghan</option>
-    <option value="Offaly">Offaly</option>
-    <option value="Roscommon">Roscommon</option>
-    <option value="Sligo">Sligo</option>
-    <option value="Tipperary">Tipperary</option>
-    <option value="Tyrone">Tyrone</option>
-    <option value="Waterford">Waterford</option>
-    <option value="Westmeath">Westmeath</option>
-    <option value="Wexford">Wexford</option>
-    <option value="Wicklow">Wicklow</option>
-  </select>
+            <h4>Syrian business directory</h4>
+            <div class="formMain">
+        <form action="{{ url_for('result') }}" method="GET" >
+          <select name="countySearch" id="countySearch" required>
+            <option value="" disabled selected hidden>Select County Please</option>
+            <option value="Antrim">Antrim</option>
+            <option value="Armagh">Armagh</option>
+            <option value="Carlow">Carlow</option>
+            <option value="Cavan">Cavan</option>
+            <option value="Clare">Clare</option>
+            <option value="Cork">Cork</option>
+            <option value="Derry">Derry</option>
+            <option value="Donegal">Donegal</option>
+            <option value="Down">Down</option>
+            <option value="Dublin">Dublin</option>
+            <option value="Fermanagh">Fermanagh</option>
+            <option value="Galway">Galway</option>
+            <option value="Kerry">Kerry</option>
+            <option value="Kildare">Kildare</option>
+            <option value="Kilkenny">Kilkenny</option>
+            <option value="Laois">Laois</option>
+            <option value="Leitrim">Leitrim</option>
+            <option value="Limerick">Limerick</option>
+            <option value="Longford">Longford</option>
+            <option value="Louth">Louth</option>
+            <option value="Mayo">Mayo</option>
+            <option value="Meath">Meath</option>
+            <option value="Monaghan">Monaghan</option>
+            <option value="Offaly">Offaly</option>
+            <option value="Roscommon">Roscommon</option>
+            <option value="Sligo">Sligo</option>
+            <option value="Tipperary">Tipperary</option>
+            <option value="Tyrone">Tyrone</option>
+            <option value="Waterford">Waterford</option>
+            <option value="Westmeath">Westmeath</option>
+            <option value="Wexford">Wexford</option>
+            <option value="Wicklow">Wicklow</option>
+          </select>
               <button class="button button3"> Search</button>
 
-</form>
+        </form>
+        </div>
+          <h3> <a href="/addBusiness">+ List Your Business + </a></h3>
+      </div>
 
+</div>
 <br><br>
 <br><br>
 
