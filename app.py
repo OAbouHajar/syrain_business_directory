@@ -36,22 +36,33 @@ def add_data_to_db(child,data):
     db = firebase.database()
     db.child("locations").child(child).push(data)
 
-def get_all_data(link):
-    if link is "all":
-        r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
-    else:
-        url = "https://dalily-sy.firebaseio.com/locations/%s.json" % (link)
-        r = requests.get(url)
+def get_all_data():
+    r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
     x = r.json()
     return x
 
 def create_the_table_all():
     r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
-    x = r.json()
+    data = r.json()
     
     table = ""
-    for k,v in x.items():
+    for k,v in data.items():
         for y,k in v.items():
+            table += "<button class='collapsible'>" + str(k["name"]) + "</button>"
+            table += "<div class='content'>"
+            table += '''<table>
+	<thead>
+	<tr>
+        <th>County</th>
+        <th>Name</th> 
+        <th>Phone</th> 
+        <th>Sector</th> 
+        <th>Maps</th> 
+        <th>Syrian Hire</th> 
+	</tr>
+	</thead>
+	<tbody>
+'''
             table += "<tr>"
             table += "<td>" + str(k["countesAdd"]) + "</td>"
             table += "<td>" + str(k["name"]) + "</td>"
@@ -60,6 +71,9 @@ def create_the_table_all():
             table += "<td>" + str(k["googleUrl"]) + "</td>"
             table += "<td>" + str(k["syrianHire"]) + "</td>"
             table += "</tr>"
+            table += '''</tbody>
+                        </table>'''
+            table += "</div>"
     return table
 
 
@@ -75,22 +89,40 @@ def create_the_table(county):
                 window.location.href = "/";
                 </script>
                 ''' %(county)
-    for k,v in x.items():
+    for y,k in x.items():
+        table += "<button class='collapsible'>" + str(k["name"]) + "</button>"
+        table += "<div class='content'>"
+        table += '''<table>
+<thead>
+	<tr>
+        <th>County</th>
+        <th>Name</th> 
+        <th>Phone</th> 
+        <th>Sector</th> 
+        <th>Maps</th> 
+        <th>Syrian Hire</th> 
+	</tr>
+	</thead>
+	<tbody>
+'''
         table += "<tr>"
-        table += "<td>" + str(v["countesAdd"]) + "</td>"
-        table += "<td>" + str(v["name"]) + "</td>"
-        table += "<td>" + str(v["phone"]) + "</td>"
-        table += "<td>" + str(v["busSector"]) + "</td>"
-        table += "<td>" + str(v["googleUrl"]) + "</td>"
-        table += "<td>" + str(v["syrianHire"]) + "</td>"
+        table += "<td>" + str(k["countesAdd"]) + "</td>"
+        table += "<td>" + str(k["name"]) + "</td>"
+        table += "<td>" + str(k["phone"]) + "</td>"
+        table += "<td>" + str(k["busSector"]) + "</td>"
+        table += "<td>" + str(k["googleUrl"]) + "</td>"
+        table += "<td>" + str(k["syrianHire"]) + "</td>"
         table += "</tr>"
+        table += '''</tbody>
+                    </table>'''
+        table += "</div>"
     return table
 
 @app.route("/")
 def route():
     return render_template("index.html" )
 
-@app.route("/result", methods=['GET'])
+@app.route("/result2", methods=['GET'])
 def result():
     select = 1
     select = request.args.get('countySearch')
@@ -99,7 +131,7 @@ def result():
         table = create_the_table_all()
     else:
         table= create_the_table(select)
-    return render_template("results.html" , select=select , table=table)
+    return render_template("result2.html" , select=select , table=table)
 
 @app.route("/addBusiness")
 def add_business():
@@ -139,6 +171,43 @@ def add_business_process():
 def aboutus():
     return render_template("aboutus.html",)
 
+
+@app.route("/result2")
+def result1():
+
+
+    data = get_all_data()
+    table = ""
+    for k,v in data.items():
+        for y,k in v.items():
+            table += "<button class='collapsible'>" + str(k["name"]) + "</button>"
+            table += "<div class='content'>"
+            table += '''<table>
+	<thead>
+	<tr>
+        <th>County</th>
+        <th>Name</th> 
+        <th>Phone</th> 
+        <th>Sector</th> 
+        <th>Maps</th> 
+        <th>Syrian Hire</th> 
+	</tr>
+	</thead>
+	<tbody>
+'''
+            table += "<tr>"
+            table += "<td>" + str(k["countesAdd"]) + "</td>"
+            table += "<td>" + str(k["name"]) + "</td>"
+            table += "<td>" + str(k["phone"]) + "</td>"
+            table += "<td>" + str(k["busSector"]) + "</td>"
+            table += "<td>" + str(k["googleUrl"]) + "</td>"
+            table += "<td>" + str(k["syrianHire"]) + "</td>"
+            table += "</tr>"
+            table += '''</tbody>
+                        </table>'''
+            table += "</div>"
+
+    return render_template("result2.html",table=table)
 
 
 # the application start

@@ -1,0 +1,167 @@
+{% extends "base.html" %} {% block body %} 
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.collapsible {
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #33383a;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    /* border: none; */
+    text-align: left;
+    outline: none;
+    font-size: 23px;
+}
+
+.active, .collapsible:hover {
+  background-color: rgb(163, 163, 163);
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.content {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color: #f1f1f1;
+}
+
+
+
+
+
+/* 
+Generic Styling, for Desktops/Laptops 
+*/
+table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+/* Zebra striping */
+tr:nth-of-type(odd) { 
+  background: #eee; 
+}
+th { 
+  background: #295a6bde; 
+  color: white; 
+  font-weight: bold; 
+}
+td, th { 
+  padding: 6px; 
+  border: 1px solid #ccc; 
+  text-align: left; 
+}
+tr:nth-of-type(odd) {
+    background: #eee;
+}
+
+tr:nth-of-type(even) {
+    background: #ccc;
+}
+
+
+@media 
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+		display: block; 
+        word-wrap:break-word
+	}
+	
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+	
+	tr { border: 1px solid #ccc; }
+	
+	td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #afafaf; 
+		position: relative;
+		padding-left: 50%; 
+	}
+	
+	td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	/*
+	Label the data
+	*/
+	td:nth-of-type(1):before { content: "County"; }
+	td:nth-of-type(2):before { content: "Name"; }
+	td:nth-of-type(3):before { content: "Phone"; }
+	td:nth-of-type(4):before { content: "Sector"; }
+	td:nth-of-type(5):before { content: "Maps"; }
+	td:nth-of-type(6):before { content: "Syrian Hire"; }
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+
+<!-- <div class="page2">
+    <div class="resultData"> -->
+        <span class="searchResults"> The Search results For : {{select}} </span>
+        <br><br><br>
+        {{table | safe}}
+
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+
+    <!-- </div>
+</div> -->
+
+
+{% endblock %}
