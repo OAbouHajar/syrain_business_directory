@@ -22,5 +22,5 @@
 
 import requests
 
-r = requests.get('https://dalily-sy.firebaseio.com/locations.json')
+r = requests.get('https://dalily-sy.firebaseio.com/locations/Carlow.json')
 print(r.json())

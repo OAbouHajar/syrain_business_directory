@@ -4,7 +4,7 @@ import time
 from datetime import timedelta
 import datetime
 import os
-# import pyrebase
+import pyrebase
 
 
 
@@ -23,32 +23,59 @@ app.config.update(
 ## Generate a random String as secret key wach time we run the app for more secuity.
 app.secret_key = os.urandom(32)
 
-# def add_data_to_db(child,data):
-#     config = {
-#     "apiKey": "AIzaSyDQ_d3UjNFUippgQGodEX0jHu8Fy6jEDBA",
-#     "authDomain": "dalily-sy.firebaseapp.com",
-#     "databaseURL": "https://dalily-sy.firebaseio.com/",
-#     "storageBucket": "dalily-sy.appspot.com"
-#     }
+def add_data_to_db(child,data):
+    config = {
+    "apiKey": "AIzaSyDQ_d3UjNFUippgQGodEX0jHu8Fy6jEDBA",
+    "authDomain": "dalily-sy.firebaseapp.com",
+    "databaseURL": "https://dalily-sy.firebaseio.com/",
+    "storageBucket": "dalily-sy.appspot.com"
+    }
 
-#     firebase = pyrebase.initialize_app(config)
+    firebase = pyrebase.initialize_app(config)
 
-#     db = firebase.database()
-#     db.child("locations").child(child).push(data)
+    db = firebase.database()
+    db.child("locations").child(child).push(data)
 
 def get_all_data(link):
-    if request.args.get('countySearch') == "all":
-        r = requests.get(f"https://dalily-sy.firebaseio.com/locations.json")
+    if link is "all":
+        r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
     else:
-        r = requests.get(f"https://dalily-sy.firebaseio.com/locations/{link}.json")
+        url = "https://dalily-sy.firebaseio.com/locations/%s.json" % (link)
+        r = requests.get(url)
     x = r.json()
     return x
 
+def create_the_table_all():
+    r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
+    x = r.json()
+    
+    table = ""
+    for k,v in x.items():
+        for y,k in v.items():
+            table += "<tr>"
+            table += "<td>" + str(k["countesAdd"]) + "</td>"
+            table += "<td>" + str(k["name"]) + "</td>"
+            table += "<td>" + str(k["phone"]) + "</td>"
+            table += "<td>" + str(k["busSector"]) + "</td>"
+            table += "<td>" + str(k["googleUrl"]) + "</td>"
+            table += "<td>" + str(k["syrianHire"]) + "</td>"
+            table += "</tr>"
+    return table
+
 
 def create_the_table(county):
-    data = get_all_data()
+    url = "https://dalily-sy.firebaseio.com/locations/%s.json" % (county)
+    r = requests.get(url)
+    x = r.json()
     table = ""
-    for k,v in data.items():
+
+    if x is None:
+        return '''<script>
+                alert("NO DATA FOR %s !");
+                window.location.href = "/";
+                </script>
+                ''' %(county)
+    for k,v in x.items():
         table += "<tr>"
         table += "<td>" + str(v["countesAdd"]) + "</td>"
         table += "<td>" + str(v["name"]) + "</td>"
@@ -68,7 +95,10 @@ def result():
     select = 1
     select = request.args.get('countySearch')
     print(select)
-    table= create_the_table(select)
+    if select == 'all':
+        table = create_the_table_all()
+    else:
+        table= create_the_table(select)
     return render_template("results.html" , select=select , table=table)
 
 @app.route("/addBusiness")
