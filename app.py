@@ -4,6 +4,7 @@ import time
 from datetime import timedelta
 import datetime
 import os
+import pyrebase
 
 
 
@@ -21,6 +22,20 @@ app.config.update(
 )
 ## Generate a random String as secret key wach time we run the app for more secuity.
 app.secret_key = os.urandom(32)
+
+def add_data_to_db(child,data):
+    config = {
+    "apiKey": "AIzaSyDQ_d3UjNFUippgQGodEX0jHu8Fy6jEDBA",
+    "authDomain": "dalily-sy.firebaseapp.com",
+    "databaseURL": "https://dalily-sy.firebaseio.com/",
+    "storageBucket": "dalily-sy.appspot.com"
+    }
+
+    firebase = pyrebase.initialize_app(config)
+
+    db = firebase.database()
+    db.child("locations").push(data)
+
 
 
 
@@ -50,6 +65,20 @@ def add_business_process():
     googleUrl = request.form.get('googleUrl')
     busDesc = request.form.get('busDesc')
     select = request.form.get('syrianHire')
+
+    data = {
+    "name": request.form.get('name'),
+    "address": request.form.get('address'),
+    "countesAdd": request.form.get('countesAdd'),
+    "phone": request.form.get('phone'),
+    "email": request.form.get('email'),
+    "busSector": request.form.get('busSector'),
+    "googleUrl": request.form.get('googleUrl'),
+    "busDesc": request.form.get('busDesc'),
+    "syrianHire": request.form.get('syrianHire')
+    }
+    print(data)
+    add_data_to_db(countesAdd,data)
 
     return render_template("index.html" )
 
