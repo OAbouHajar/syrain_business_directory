@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #fff;
+    }
+
+li {
+  float: left;
+}
+
+li a {
+display: block;
+    color: black;
+    text-align: center;
+    padding: 19px 20px;
+    text-decoration: none;
+        }
+
+li a:hover:not(.active) {
+  background-color: #ff4d55;
+}
+
+.active {
+  background-color: #4CAF50;
+}
+.menu {
+    padding: 4px 0px 4px 0px;
+
+    float: right;
+    margin-right: 2%;
+}
+.logo {
+width: 6.2%;
+    display: inline-table;
+    margin: auto;
+    content: url(/static/logo.png);
+    margin-left: 2%;
+    padding: 3px 0px 4px 0px;
+
+}
+.navigation-bar{
+width: 100%;
+    background-color: white;
+}
+.navigation-bar ul {
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+  display:inline-block;
+  vertical-align:top;
+}
+
+@media only screen and (max-width: 750px){
+.logo {
+    height: 51px;
+    width: 86px;
+    margin-right: 14px;
+
+}
+.menu {
+    width: 67%;
+    margin-right: 0%;
+    font-size: 14px;
+    padding-top: 6px;
+    font-style: bold;
+    font-weight: 200;
+    padding-left: -7px;    
+    }
+li a {
+    padding: 19px 11px;
+}
+}
+
+</style>
+</head>
+<body>
+    <div class="navigation-bar">
+        <div id="navigation-container">
+        <div class="logo">
+<!--            <img src="static/logo.png" width="5%">-->
+            </div> 
+            <div class="menu">
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/addBusiness">Add Buisness</a></li>
+                <li><a href="/aboutus">About</a></li>
+            </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+

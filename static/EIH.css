@@ -137,7 +137,7 @@ select {
     font-size: 18px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
-    background-image: url(/static/searchicon.png);
+    /* background-image: url(/static/searchicon.png); */
     background-position: 10px 7px;
     background-repeat: no-repeat;
     background-size: 5.5%;
@@ -196,24 +196,35 @@ textarea {
     max-height: 100px;
 }
 
-.logo {
-    width: 19%;
+.logoMain {
+    width: 25%;
     display: block;
     margin: auto;
-    content: url(/static/logo.png);
+    content: url(/static/logoW.png);
+}
+
+h6 {
+    background-color: transparent;
+    text-decoration: none;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+    margin-top: -4%;
+    font-size: 26px;
 }
 
 .button {
     background-color: #4CAF50;
-    /* Green */
     border: none;
     color: white;
-    padding: 14px 55px;
+    padding: 10px 32px;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 23px;
+    font-weight: 200;
+    font-family: 'Montserrat', sans-serif;
     -webkit-transition-duration: 0.4s;
-    /* Safari */
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 4px;
@@ -295,11 +306,6 @@ textarea {
     color: #4e4600;
 }
 
-.buttonAddsimple {
-    left: 86%;
-    position: sticky;
-}
-
 .buttonAdd:disabled {
     background-color: #8a8787;
 }
@@ -310,8 +316,8 @@ textarea {
 }
 
 .button3 {
-    background-color: #e2c449;
-    color: black;
+    background-color: #ff4d55;
+    color: white;
     /* border: 2px solid #9c9c7b; */
 }
 
@@ -393,14 +399,16 @@ h3 {
 
 #p1 h4 {
     content: "The Developer";
-    color: #e2c449;
+    /* color: #e2c449; */
+    color: #ffffff;
     font-size: 1.5em;
     text-align: center;
     letter-spacing: 1px;
-    font-size: 31px;
+    font-size: 47px;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
+    margin-top: 9%;
 }
 
 #pus h4 {
@@ -408,7 +416,7 @@ h3 {
     letter-spacing: 1px;
     font-size: 56px;
     font-family: 'Montserrat', sans-serif;
-    color: #f4af0b;
+    color: #ff4d55;
     text-transform: uppercase;
     font-weight: 500;
     margin-top: 2%;
@@ -554,8 +562,8 @@ p {
 }
 
 .fa {
-    padding: 15px;
-    font-size: 30px;
+    padding: 8px;
+    font-size: 22px;
     width: 5;
     text-align: center;
     text-decoration: none;
@@ -567,7 +575,7 @@ p {
     opacity: 0.7;
 }
 
-.fa-google {
+.fa-facebook {
     background: #dd4b39;
     color: white;
 }
@@ -582,9 +590,18 @@ p {
     color: rgba(0, 0, 0, 0.89)
 }
 
-.fa-rss {
-    background: #ff6600;
-    color: white;
+.fa-facebook {
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+}
+
+.fa-facebook::before {
+    font-size: 17px;
+    padding: 3px;
+}
+
+.fa-search::before {
+    font: normal normal normal 20px/1 FontAwesome;
 }
 
 .alert {
@@ -658,43 +675,49 @@ a {
 
 /*for Mobile*/
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 750px) {
     /* For mobile phones: */
     html,
     body {
         background-position: bottom;
     }
     input[type=text],
-    input[type=email],
+    input,
     textarea {
-        margin-left: 0%;
+        margin-left: 2%;
         width: 95%;
     }
     [class*="button"] {
         padding: 10px 35px;
         font-size: 16px;
-        margin-left: 32%;
+        margin-left: 10%;
         margin-top: 4%;
+        width: 76%;
     }
-    .logo {
-        height: 130px;
-        width: 140px;
+    select[name="countesAdd"],
+    select[name="syrianHire"],
+    select[name="busSector"] {
+        padding: 10px 45px;
+        margin-left: 2%;
+    }
+    li a {
+        display: block;
+        color: black;
+        text-align: center;
+        padding: 19px 20px;
+        text-decoration: none;
     }
     .profile_image {
         width: 40%;
     }
     [class*="fa"] {
-        padding: 7px;
+        padding: 14px;
         font-size: 15px;
         width: 3;
     }
     [class*="footer"] {
-        margin-top: 15%;
+        margin-top: -4%;
         font-size: 11px;
-    }
-    #p1 h4 {
-        font-size: 14px;
-        padding-top: 10px;
     }
     .page1 {
         padding: 25% 2% 4% 2%;
@@ -710,6 +733,7 @@ a {
     }
     .result label {
         margin-right: 3%;
+        margin-left: 3%;
         font-size: large;
     }
     .searchResults {
@@ -719,6 +743,8 @@ a {
         display: block;
         margin: auto;
         font-size: large;
+        margin-bottom: 7%;
+        margin-top: 7%;
     }
     .buttonreset {
         margin-left: 1%;
@@ -726,9 +752,11 @@ a {
         font-size: 22px;
     }
     .buttonAddsimple {
-        margin-left: 1%;
+        margin-left: 4%;
         margin-top: auto;
-        width: 78%;
+        width: 92%;
+        margin-top: 7%;
+        margin-bottom: 7%;
     }
     #myInput {
         background-image: url(/static/searchicon.png);
@@ -780,8 +808,30 @@ a {
         display: flex;
         align-items: center;
         justify-content: center;
-        margin-top: 2%;
-        margin-bottom: 15%;
+        margin-top: 4%;
+        margin-bottom: 9%;
+    }
+    #p1 h4 {
+        content: "The Developer";
+        /* color: #e2c449; */
+        color: #ffffff;
+        /* font-size: 1.5em; */
+        text-align: center;
+        letter-spacing: 1px;
+        font-size: 41px;
+    }
+    h6 {
+        margin-top: -11%;
+        font-size: 18px;
+    }
+    .formMain {
+        display: block;
+        margin-left: 4%;
+    }
+    select {
+        padding: 11px 26px 11px 29px;
+        width: 97%;
+        font-size: 23px;
     }
     #pus h4 {
         font-size: 37px;
