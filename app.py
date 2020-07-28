@@ -4,7 +4,7 @@ import time
 from datetime import timedelta
 import datetime
 import os
-import pyrebase
+# import pyrebase
 
 
 
@@ -23,21 +23,41 @@ app.config.update(
 ## Generate a random String as secret key wach time we run the app for more secuity.
 app.secret_key = os.urandom(32)
 
-def add_data_to_db(child,data):
-    config = {
-    "apiKey": "AIzaSyDQ_d3UjNFUippgQGodEX0jHu8Fy6jEDBA",
-    "authDomain": "dalily-sy.firebaseapp.com",
-    "databaseURL": "https://dalily-sy.firebaseio.com/",
-    "storageBucket": "dalily-sy.appspot.com"
-    }
+# def add_data_to_db(child,data):
+#     config = {
+#     "apiKey": "AIzaSyDQ_d3UjNFUippgQGodEX0jHu8Fy6jEDBA",
+#     "authDomain": "dalily-sy.firebaseapp.com",
+#     "databaseURL": "https://dalily-sy.firebaseio.com/",
+#     "storageBucket": "dalily-sy.appspot.com"
+#     }
 
-    firebase = pyrebase.initialize_app(config)
+#     firebase = pyrebase.initialize_app(config)
 
-    db = firebase.database()
-    db.child("locations").push(data)
+#     db = firebase.database()
+#     db.child("locations").child(child).push(data)
+
+def get_all_data(link):
+    if request.args.get('countySearch') == "all":
+        r = requests.get(f"https://dalily-sy.firebaseio.com/locations.json")
+    else:
+        r = requests.get(f"https://dalily-sy.firebaseio.com/locations/{link}.json")
+    x = r.json()
+    return x
 
 
-
+def create_the_table(county):
+    data = get_all_data()
+    table = ""
+    for k,v in data.items():
+        table += "<tr>"
+        table += "<td>" + str(v["countesAdd"]) + "</td>"
+        table += "<td>" + str(v["name"]) + "</td>"
+        table += "<td>" + str(v["phone"]) + "</td>"
+        table += "<td>" + str(v["busSector"]) + "</td>"
+        table += "<td>" + str(v["googleUrl"]) + "</td>"
+        table += "<td>" + str(v["syrianHire"]) + "</td>"
+        table += "</tr>"
+    return table
 
 @app.route("/")
 def route():
@@ -48,7 +68,8 @@ def result():
     select = 1
     select = request.args.get('countySearch')
     print(select)
-    return render_template("results.html" , select=select)
+    table= create_the_table(select)
+    return render_template("results.html" , select=select , table=table)
 
 @app.route("/addBusiness")
 def add_business():

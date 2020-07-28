@@ -663,6 +663,17 @@ p {
     opacity: .2;
 }
 
+.resultData {
+    display: block;
+    margin: auto;
+    background-color: rgb(56 62 64 / 85%);
+    border-radius: 12px;
+    padding: 2% 2%;
+    width: 86%;
+    margin-bottom: 2%;
+    border: 2px solid #b39004;
+}
+
 a {
     background-color: transparent;
     text-decoration: none;
@@ -709,6 +720,9 @@ a {
     }
     .profile_image {
         width: 40%;
+    }
+    .resultData {
+        width: 87%;
     }
     [class*="fa"] {
         padding: 14px;
