@@ -1,10 +1,10 @@
-{% extends "base.html" %} {% block body %} 
+{% extends "base.html" %} {% block body %}
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 .collapsible {
-    background-color: #ffffff;
+  background-color: #ffffff;
     color: black;
     border: solid 1px #33383a;
     cursor: pointer;
@@ -13,7 +13,9 @@
     /* border: none; */
     text-align: left;
     outline: none;
+    width: 95%;
     font-size: 23px;
+    margin-left: 2%;
 }
 
 .active, .collapsible:hover {
@@ -22,7 +24,7 @@
 
 .collapsible:after {
   content: '\002B';
-  color: white;
+    color: black;
   font-weight: bold;
   float: right;
   margin-left: 5px;
@@ -34,36 +36,39 @@
 
 .content {
   padding: 0 18px;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
-}
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+    background-color: #f1f1f140;
+    width: 86%;
+    /* margin-left: 2%; */
+    margin-left: 2%;
+  }
 
 
 
 
 
-/* 
-Generic Styling, for Desktops/Laptops 
+/*
+Generic Styling, for Desktops/Laptops
 */
-table { 
-  width: 100%; 
-  border-collapse: collapse; 
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 /* Zebra striping */
-tr:nth-of-type(odd) { 
-  background: #eee; 
+tr:nth-of-type(odd) {
+  background: #eee;
 }
-th { 
-  background: #295a6bde; 
-  color: white; 
-  font-weight: bold; 
+th {
+  background: #295a6bde;
+  color: white;
+  font-weight: bold;
 }
-td, th { 
-  padding: 6px; 
-  border: 1px solid #ccc; 
-  text-align: left; 
+td, th {
+  padding: 6px;
+  border: 1px solid #ccc;
+  text-align: left;
 }
 tr:nth-of-type(odd) {
     background: #eee;
@@ -74,44 +79,56 @@ tr:nth-of-type(even) {
 }
 
 
-@media 
+@media
 only screen and (max-width: 760px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
 	/* Force table to not be like tables anymore */
-	table, thead, tbody, th, td, tr { 
-		display: block; 
+	table, thead, tbody, th, td, tr {
+		display: block;
         word-wrap:break-word
 	}
-	
+
 	/* Hide table headers (but not display: none;, for accessibility) */
-	thead tr { 
+	thead tr {
 		position: absolute;
 		top: -9999px;
 		left: -9999px;
 	}
-	
+
 	tr { border: 1px solid #ccc; }
-	
-	td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #afafaf; 
-		position: relative;
-		padding-left: 50%; 
-	}
-	
-	td:before { 
+
+	td {
+    border: none;
+    border-bottom: 1px solid #226292;
+    position: relative;
+    padding-left: 50%;
+    color: #22515a;
+  	}
+
+	td:before {
 		/* Now like a table header */
 		position: absolute;
 		/* Top/left values mimic padding */
 		top: 6px;
 		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
+		width: 45%;
+		padding-right: 10px;
 		white-space: nowrap;
 	}
-	
+  .collapsible {
+    background-color: #ffffff;
+    color: black;
+    border: solid 1px #33383a;
+    cursor: pointer;
+    padding: 18px;
+    width: 96%;
+        /* border: none; */
+    text-align: left;
+    outline: none;
+    font-size: 23px;
+}
+
 	/*
 	Label the data
 	*/
@@ -126,6 +143,38 @@ only screen and (max-width: 760px),
 
 
 
+.filterDiv {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+    outline: none;
+    padding: 9px 12px;
+    background-color: #ffffff;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 22px;
+}
+
+.btn:hover {
+  background-color: #ec4444;
+}
+
+.btn.active {
+  background-color: #ec4444;
+  color: white;
+}
 
 
 
@@ -136,8 +185,20 @@ only screen and (max-width: 760px),
 
 <!-- <div class="page2">
     <div class="resultData"> -->
-        <span class="searchResults"> The Search results For : {{select}} </span>
-        <br><br><br>
+        <h3 class="searchResults"> The Search results For : {{select}} </h3>
+        <hr>
+        <br>
+        <!-- <div id="myBtnContainer">
+          <button class="btn active" onclick="filterSelection('all')"> All</button>
+          <button class="btn" onclick="filterSelection('Car Maintenance')"> Cars</button>
+          <button class="btn" onclick="filterSelection('Technology')"> Tech</button>
+          <button class="btn" onclick="filterSelection('Wholesale')"> Wholesale</button>
+          <button class="btn" onclick="filterSelection('Retail')"> Retail</button>
+        </div>
+         -->
+         {% include 'filter2.html' %}
+
+         <br>
         {{table | safe}}
 
 
@@ -153,12 +214,12 @@ for (i = 0; i < coll.length; i++) {
       content.style.maxHeight = null;
     } else {
       content.style.maxHeight = content.scrollHeight + "px";
-    } 
+    }
   });
 }
-</script>
+filterSelection("all")
 
-
+ </script>
 
     <!-- </div>
 </div> -->

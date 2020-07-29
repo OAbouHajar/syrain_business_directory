@@ -48,7 +48,7 @@ def create_the_table_all():
     table = ""
     for k,v in data.items():
         for y,k in v.items():
-            table += "<button class='collapsible'>" + str(k["name"]) + "</button>"
+            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
             table += "<div class='content'>"
             table += '''<table>
 	<thead>
@@ -68,7 +68,7 @@ def create_the_table_all():
             table += "<td>" + str(k["name"]) + "</td>"
             table += "<td>" + str(k["phone"]) + "</td>"
             table += "<td>" + str(k["busSector"]) + "</td>"
-            table += "<td>" + str(k["googleUrl"]) + "</td>"
+            table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
             table += "<td>" + str(k["syrianHire"]) + "</td>"
             table += "</tr>"
             table += '''</tbody>
@@ -90,7 +90,7 @@ def create_the_table(county):
                 </script>
                 ''' %(county)
     for y,k in x.items():
-        table += "<button class='collapsible'>" + str(k["name"]) + "</button>"
+        table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
         table += "<div class='content'>"
         table += '''<table>
 <thead>
@@ -110,7 +110,8 @@ def create_the_table(county):
         table += "<td>" + str(k["name"]) + "</td>"
         table += "<td>" + str(k["phone"]) + "</td>"
         table += "<td>" + str(k["busSector"]) + "</td>"
-        table += "<td>" + str(k["googleUrl"]) + "</td>"
+        table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
+        # table += "<td><a herf='" + str(k["googleUrl"]) + "'>"+ str(k["googleUrl"])+"</a></td>"
         table += "<td>" + str(k["syrianHire"]) + "</td>"
         table += "</tr>"
         table += '''</tbody>
@@ -148,6 +149,7 @@ def add_business_process():
     googleUrl = request.form.get('googleUrl')
     busDesc = request.form.get('busDesc')
     select = request.form.get('syrianHire')
+    agree = request.form.get('agree')
 
     data = {
     "name": request.form.get('name'),
@@ -158,7 +160,9 @@ def add_business_process():
     "busSector": request.form.get('busSector'),
     "googleUrl": request.form.get('googleUrl'),
     "busDesc": request.form.get('busDesc'),
-    "syrianHire": request.form.get('syrianHire')
+    "syrianHire": request.form.get('syrianHire'),
+    "agree" : request.form.get('agree')
+
     }
     print(data)
     add_data_to_db(countesAdd,data)

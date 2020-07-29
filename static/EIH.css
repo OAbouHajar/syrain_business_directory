@@ -13,7 +13,14 @@ body {
     position: absolute;
     display: none;
 }
+.filterClick{
 
+    color: white;
+    margin-left: 2%;
+    margin-bottom: 0%;
+    display: block;
+    font-size: 26px;
+}
 .buttonreset2 {
     border: none;
     padding: 9px 15px;
@@ -395,8 +402,21 @@ h3 {
     display: flex;
     align-items: center;
     justify-content: center;
-}
+    margin-top: 4%;
 
+}
+h5 {
+    content: "The Developer";
+    /* color: #e2c449; */
+    color: #ffffff;
+    font-size: 1.5em;
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 47px;
+    font-family: 'Montserrat', sans-serif;
+    text-transform: uppercase;
+    font-weight: 400;
+}
 #p1 h4 {
     content: "The Developer";
     /* color: #e2c449; */
@@ -408,7 +428,6 @@ h3 {
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
     font-weight: 400;
-    margin-top: 9%;
 }
 
 #pus h4 {
@@ -522,7 +541,7 @@ p {
 
 .searchResults {
     color: rgb(255 255 255);
-    font-size: 20px;
+    font-size: 26px;
 }
 
 .logoTop {
@@ -588,7 +607,16 @@ p {
     background: #dd4b39;
     color: white;
 }
+.fa-whatsapp {
+    background: #2fb41d;
+    color: white;
+}
+.fa-filter:before {
+    content: "\f0b0";
+    font-size: 28px;
+    font: normal normal normal 20px/1 FontAwesome;
 
+}
 .fa-linkedin {
     background: #007bb5;
     color: white;
@@ -691,6 +719,14 @@ a {
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
+.aTable {
+    background-color: transparent;
+    text-decoration: none;
+    text-align: center;
+    color: #250a80;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
 
 
 /*for Mobile*/
@@ -708,11 +744,10 @@ a {
         width: 95%;
     }
     [class*="button"] {
-        padding: 10px 35px;
-        font-size: 16px;
-        margin-left: 10%;
+        margin-left: 18%;
         margin-top: 4%;
-        width: 76%;
+        width: 62%;
+    
     }
     select[name="countesAdd"],
     select[name="syrianHire"],
@@ -734,12 +769,13 @@ a {
         width: 87%;
     }
     [class*="fa"] {
-        padding: 14px;
-        font-size: 15px;
+        padding: 12px;
+        font-size: 21px;
+        font-weight: 500;
         width: 3;
-    }
+        }
     [class*="footer"] {
-        margin-top: -4%;
+        margin-top: 8%;
         font-size: 11px;
     }
     .page1 {
@@ -757,11 +793,18 @@ a {
     .result label {
         margin-right: 3%;
         margin-left: 3%;
-        font-size: large;
-    }
+        font-size: 15px;
+        font-family: 'Montserrat', sans-serif;
+        }
     .searchResults {
         font-size: large;
-    }
+        /* margin-top: 18%; */
+        margin-left: 0%;
+        display: block;
+        margin-top: 6%;
+        margin-bottom: 5%;
+        font-weight: 500;
+}
     .buttonBack {
         display: block;
         margin: auto;
@@ -832,22 +875,34 @@ a {
         align-items: center;
         justify-content: center;
         margin-top: 4%;
-        margin-bottom: 9%;
+        margin-bottom: 16%;
     }
     #p1 h4 {
         content: "The Developer";
         /* color: #e2c449; */
-        color: #ffffff;
+        color: #e65154;
         /* font-size: 1.5em; */
         text-align: center;
         letter-spacing: 1px;
-        font-size: 41px;
+        font-size: 34px;
         margin-top: -7%;
-
+        font-weight: 500;
+    }
+    .logoMain {
+        width: 47%;
+        display: block;
+        margin: auto;
+        content: url(/static/logoW.png);
+    }
+    .center {
+        display: block;
+        /* margin: auto; */
+        margin-top: -15%;
+        margin-bottom: 10%;
     }
     h6 {
         margin-top: -11%;
-        font-size: 23px;
+        font-size: 19px;
         width: 80%;
         font-weight: 200;
         margin-left: 10%;

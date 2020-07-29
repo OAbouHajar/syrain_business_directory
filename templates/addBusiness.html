@@ -5,13 +5,14 @@
 
         <form action='/addProcess' method="POST">
             <img src="static/shop.png" alt="Girl in a jacket" width="40" height="40">
-            <span class="searchResults">Add Business</span>
-            <br><br><br>
-            <label>Business Name:  (اسم العمل)</label>
+            <h5 class="searchResults">Add Business</h5>
+            <hr>
+            <br>
+            <label>Business Name:</label>
                         <br>
             <input id="pac-input" name='name' type="text" placeholder="اسم العمل" required>
             <hr>
-            <label>Address: (العنوان)</label>
+            <label>Address: </label>
             <br>
             <textarea id="pac-input" name='address' type="text" placeholder="العنوان" required></textarea>
             <hr>
@@ -63,6 +64,7 @@
                 <option value="Retail">Retail (بيع بالتجزئه)</option>
                 <option value="Transportation">Transportation (المواصلات)</option>
                 <option value="Restaurants">Restaurants (مطاعم)</option>
+                <option value="Handy">Handy Man (عامل يدوي)</option>
             </select>
             <hr>
             <label> Phone Number:</label>
@@ -89,7 +91,13 @@
                 <option value="no">NO</option>
             </select>
             <br>
+            <hr>
+            <br>
 
+            <label for="vehicle1">I do accept to share this data on public or with any other third party.</label>
+            <input type="checkbox" id="agree" name="agree" value="agree" required>
+
+            <br>
 
             <button class=" buttonAdd button4 buttonAddsimple"> ADD BUSINESS </button>
         </form>
