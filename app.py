@@ -48,32 +48,35 @@ def create_the_table_all():
     table = ""
     for k,v in data.items():
         for y,k in v.items():
-            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
-            table += "<div class='content'>"
-            table += '''<table>
-	<thead>
-	<tr>
-        <th>County</th>
-        <th>Name</th> 
-        <th>Phone</th> 
-        <th>Sector</th> 
-        <th>Maps</th> 
-        <th>Syrian Hire</th> 
-	</tr>
-	</thead>
-	<tbody>
-'''
-            table += "<tr>"
-            table += "<td>" + str(k["countesAdd"]) + "</td>"
-            table += "<td>" + str(k["name"]) + "</td>"
-            table += "<td>" + str(k["phone"]) + "</td>"
-            table += "<td>" + str(k["busSector"]) + "</td>"
-            table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
-            table += "<td>" + str(k["syrianHire"]) + "</td>"
-            table += "</tr>"
-            table += '''</tbody>
-                        </table>'''
-            table += "</div>"
+            if k['active'] is True:
+                table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
+                table += "<div class='content'>"
+                table += '''<table>
+                            <thead>
+                            <tr>
+                                <th>County</th>
+                                <th>Name</th> 
+                                <th>Phone</th> 
+                                <th>Sector</th> 
+                                <th>Maps</th> 
+                                <th>Syrian Hire</th> 
+                                <th>Description</th> 
+                            </tr>
+                            </thead>
+                            <tbody>
+                        '''
+                table += "<tr>"
+                table += "<td>" + str(k["countesAdd"]) + "</td>"
+                table += "<td>" + str(k["name"]) + "</td>"
+                table += "<td>" + str(k["phone"]) + "</td>"
+                table += "<td>" + str(k["busSector"]) + "</td>"
+                table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
+                table += "<td>" + str(k["syrianHire"]) + "</td>"
+                table += "<td>" + str(k["busDesc"]) + "</td>"
+                table += "</tr>"
+                table += '''</tbody>
+                            </table>'''
+                table += "</div>"
     return table
 
 
@@ -90,33 +93,36 @@ def create_the_table(county):
                 </script>
                 ''' %(county)
     for y,k in x.items():
-        table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
-        table += "<div class='content'>"
-        table += '''<table>
-<thead>
-	<tr>
-        <th>County</th>
-        <th>Name</th> 
-        <th>Phone</th> 
-        <th>Sector</th> 
-        <th>Maps</th> 
-        <th>Syrian Hire</th> 
-	</tr>
-	</thead>
-	<tbody>
-'''
-        table += "<tr>"
-        table += "<td>" + str(k["countesAdd"]) + "</td>"
-        table += "<td>" + str(k["name"]) + "</td>"
-        table += "<td>" + str(k["phone"]) + "</td>"
-        table += "<td>" + str(k["busSector"]) + "</td>"
-        table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
-        # table += "<td><a herf='" + str(k["googleUrl"]) + "'>"+ str(k["googleUrl"])+"</a></td>"
-        table += "<td>" + str(k["syrianHire"]) + "</td>"
-        table += "</tr>"
-        table += '''</tbody>
-                    </table>'''
-        table += "</div>"
+        if k['active'] is True:
+            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "</button>"
+            table += "<div class='content'>"
+            table += '''<table>
+                    <thead>
+                        <tr>
+                            <th>County</th>
+                            <th>Name</th> 
+                            <th>Phone</th> 
+                            <th>Sector</th> 
+                            <th>Maps</th> 
+                            <th>Syrian Hire</th> 
+                            <th>Description</th> 
+                        </tr>
+                        </thead>
+                        <tbody>
+                    '''
+            table += "<tr>"
+            table += "<td>" + str(k["countesAdd"]) + "</td>"
+            table += "<td>" + str(k["name"]) + "</td>"
+            table += "<td>" + str(k["phone"]) + "</td>"
+            table += "<td>" + str(k["busSector"]) + "</td>"
+            table += "<td><a class='aTable' href='{link}'>{link}</a>".format(link=str(k["googleUrl"]))+"</td>"
+            # table += "<td><a herf='" + str(k["googleUrl"]) + "'>"+ str(k["googleUrl"])+"</a></td>"
+            table += "<td>" + str(k["syrianHire"]) + "</td>"
+            table += "<td>" + str(k["busDesc"]) + "</td>"
+            table += "</tr>"
+            table += '''</tbody>
+                        </table>'''
+            table += "</div>"
     return table
 
 @app.route("/")
@@ -161,8 +167,8 @@ def add_business_process():
     "googleUrl": request.form.get('googleUrl'),
     "busDesc": request.form.get('busDesc'),
     "syrianHire": request.form.get('syrianHire'),
-    "agree" : request.form.get('agree')
-
+    "agree" : request.form.get('agree'),
+    "active": True
     }
     print(data)
     add_data_to_db(countesAdd,data)
