@@ -13,6 +13,10 @@ body {
     position: absolute;
     display: none;
 }
+
+.filtermain {
+    margin-left: 2%;
+}
 .filterClick{
 
     color: white;
@@ -42,6 +46,11 @@ body {
     display: contents;
 }
 
+.busdesc {
+    font-family: 'Montserrat';
+    font-size: 17px;
+    color: #ff4d54;
+}
 
 /* Text between <hr> tag */
 
@@ -204,9 +213,9 @@ textarea {
 }
 
 .logoMain {
-    width: 25%;
+    width: 20%;
     display: block;
-    margin: auto;
+    margin: 2% 0% 1% 40%;
     content: url(/static/logoW.png);
 }
 
@@ -219,6 +228,8 @@ h6 {
     font-weight: 100;
     margin-top: -4%;
     font-size: 26px;
+    margin-bottom: 2%;
+
 }
 
 .button {
@@ -542,6 +553,8 @@ p {
 .searchResults {
     color: rgb(255 255 255);
     font-size: 26px;
+    position: relative;
+    margin: 5% 0% 2% 0%;
 }
 
 .logoTop {

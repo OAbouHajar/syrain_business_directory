@@ -15,12 +15,12 @@ li {
 }
 
 li a {
-display: block;
-    color: black;
+    display: block;
+    color: white;
     text-align: center;
     padding: 19px 20px;
     text-decoration: none;
-        }
+}
 
 li a:hover:not(.active) {
   background-color: #ff4d55;
@@ -30,23 +30,25 @@ li a:hover:not(.active) {
   background-color: #4CAF50;
 }
 .menu {
-    padding: 4px 0px 4px 0px;
+    padding: 15px 0px 4px 0px;
 
     float: right;
     margin-right: 2%;
 }
 .logo {
-width: 6.2%;
+    width: 6.2%;
     display: inline-table;
     margin: auto;
     content: url(/static/logo.png);
-    margin-left: 2%;
-    padding: 3px 0px 4px 0px;
-
+    /* margin-left: 2%; */
+    /* padding: 3px 0px 4px 0px; */
+    position: absolute;
+    top: 5%;
+    left: 2%;
 }
 .navigation-bar{
-width: 100%;
-    background-color: white;
+    width: 100%;
+    background-color: #ffffff00;    
 }
 .navigation-bar ul {
   padding: 0px;
@@ -54,6 +56,8 @@ width: 100%;
   text-align: center;
   display:inline-block;
   vertical-align:top;
+  background-color: #fff0;
+
 }
 
 @media only screen and (max-width: 750px){
@@ -82,9 +86,9 @@ li a {
 <body>
     <div class="navigation-bar">
         <div id="navigation-container">
-        <div class="logo">
-<!--            <img src="static/logo.png" width="5%">-->
-            </div> 
+        <a class="logo" href="/"></a>>
+<!--     href="https://www.w3schools.com">       <img src="static/logo.png" width="5%">-->
+        </a> 
             <div class="menu">
             <ul>
                 <li><a href="/">Home</a></li>

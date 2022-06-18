@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<style>
+
+.show {
+  display: block;
+}
+
+.container {
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+/* Style the buttons */
+.btn {
+    border: none;
+    outline: none;
+    padding: 0px 12px 5px;
+    background-color: #f1f1f1;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.btn img{
+    position: relative;
+    top: 6px;
+    width: 25px;
+}
+
+.btn:hover {
+  background-color: #ddd;
+}
+
+.btn.active {
+  background-color: #666;
+  color: white;
+}
+</style>
+<div class="dropdown">
+    <div class="dropdown-content">
+      <a><button class="btn" onclick="filterSelection('all')"> <img src="/static/filter/all.png" > All</button></a>
+      <a><button class="btn" onclick="filterSelection('Car Maintenance')"><img src="/static/filter/mechanic.png" > mechanic</button></a>
+      <a><button class="btn" onclick="filterSelection('Technology')"> <img src="/static/filter/tech.png" > Tech </button></a>
+      <a><button class="btn" onclick="filterSelection('Wholesale')"> <img src="/static/filter/wholesale.png" > Wholesale</button></a>
+      <a><button class="btn" onclick="filterSelection('Retail')"> <img src="/static/filter/retails.png" > Retail</button></a>
+      <a><button class="btn" onclick="filterSelection('Restaurants')"> <img src="/static/filter/grocy.png" > Food</button></a>
+      <a><button class="btn" onclick="filterSelection('Transportation')"> <img src="/static/filter/van.png" > Transportation</button></a>
+      <a><button class="btn" onclick="filterSelection('Handy')"> <img src="/static/filter/handy.png" > Handy Man</button></a>
+  </div>
+  </div>
+
+    <script>
+filterSelection("all")
+  function filterSelection(c) {
+    var x, i;
+    x = document.getElementsByClassName("filterDiv");
+    if (c == "all") c = "";
+    for (i = 0; i < x.length; i++) {
+      w3RemoveClass(x[i], "show");
+      if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+    }
+  }
+  
+  function w3AddClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+    }
+  }
+  
+  function w3RemoveClass(element, name) {
+    var i, arr1, arr2;
+    arr1 = element.className.split(" ");
+    arr2 = name.split(" ");
+    for (i = 0; i < arr2.length; i++) {
+      while (arr1.indexOf(arr2[i]) > -1) {
+        arr1.splice(arr1.indexOf(arr2[i]), 1);     
+      }
+    }
+    element.className = arr1.join(" ");
+  }
+  
+  // Add active class to the current button (highlight it)
+  var btnContainer = document.getElementById("myBtnContainer");
+  var btns = btnContainer.getElementsByClassName("btn");
+  for (var i = 0; i < btns.length; i++) {
+    btns[i].addEventListener("click", function(){
+      var current = document.getElementsByClassName("active");
+      current[0].className = current[0].className.replace(" active", "");
+      this.className += " active";
+    });
+  }
+ </script>
