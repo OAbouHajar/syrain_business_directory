@@ -199,9 +199,11 @@ only screen and (max-width: 760px),
         </div>
          -->
          <div class="filtermain">
-         {% include 'filter3.html' %}
+          {% include 'filter3.html' %}
         </div>
-         <br>
+
+        {% include 'search.html' %}
+        <br>
         {{table | safe}}
 
 

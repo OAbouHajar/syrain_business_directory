@@ -49,7 +49,7 @@ def create_the_table_all():
     for k,v in data.items():
         for y,k in v.items():
             if k['active'] is True:
-                table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "<br>" + "<span class='busdesc'>" + str(k["busDesc"]) +"</span>" + "</button>"
+                table += "<button id='resultRow' class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "<br>" + "<span class='busdesc'>" + str(k["busDesc"][0:75]+'...') +"</span>" + "</button>"
                 table += "<div class='content'>"
                 table += '''<table>
                             <thead>
@@ -94,7 +94,7 @@ def create_the_table(county):
                 ''' %(county)
     for y,k in x.items():
         if k['active'] is True:
-            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + str(k["busDesc"]) + "</button>"
+            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + str(k["busDesc"][0:75]+'...') + "</button>"
             table += "<div class='content'>"
             table += '''<table>
                     <thead>
