@@ -11,6 +11,9 @@
   overflow: hidden;
 }
 
+.left {
+}
+
 /* Style the buttons */
 .btn {
     border: none;
@@ -37,6 +40,33 @@
   background-color: #666;
   color: white;
 }
+
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+    .btn {
+        border: none;
+        outline: none;
+        padding: 0px 12px 5px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 16px;
+        margin-bottom: 2%;
+        font-weight: 500;
+    }
+    .filtermain {
+    height: 52px;
+    /* border: 1px solid red; */
+    /* overflow: auto; */
+    /* direction: ltr; */
+    /* overflow-x: scroll; */
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+  }
+
 </style>
 <div class="dropdown">
     <div class="dropdown-content">

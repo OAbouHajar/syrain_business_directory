@@ -810,13 +810,14 @@ a {
         font-family: 'Montserrat', sans-serif;
         }
     .searchResults {
-        font-size: large;
+        /* font-size: large;  */
         /* margin-top: 18%; */
         margin-left: 0%;
         display: block;
-        margin-top: 6%;
-        margin-bottom: 5%;
+        margin-top: 21%;
+        /* margin-bottom: 5%; */
         font-weight: 500;
+        font-size: 21px;
 }
     .buttonBack {
         display: block;
@@ -898,13 +899,13 @@ a {
         text-align: center;
         letter-spacing: 1px;
         font-size: 34px;
-        margin-top: -7%;
+        margin-top: 4%;
         font-weight: 500;
     }
     .logoMain {
         width: 47%;
         display: block;
-        margin: auto;
+        margin: 11% 0% 5% 24%;
         content: url(/static/logoW.png);
     }
     .center {
@@ -914,11 +915,12 @@ a {
         margin-bottom: 10%;
     }
     h6 {
-        margin-top: -11%;
+        margin-top: -10%;
         font-size: 19px;
         width: 80%;
         font-weight: 200;
         margin-left: 10%;
+        margin-bottom: 4%;
         }
     .formMain {
         display: block;
