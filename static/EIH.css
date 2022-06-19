@@ -3,12 +3,62 @@ body {
     width: 100%;
     height: 100%;
     margin: auto;
-    background-image: url(/static/home-bg.png);
+    background-image: url(/static/13.png);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
+/* CARDS */
+.busCard {
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    max-width: 342px;
+    width: 334px;
+    height: 55%;
+    text-align: center;
+    font-family: arial;
+    display: inline-table;
+    /* margin-left: 0.5px; */
+    /* margin-right: 0.5%; */
+    margin: 0.3%;
+    background-color: white;
+}
+.busName {
+    color: #000000;
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;}
+.busTitle {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    color: #ababab;
+}
+
+.buttonBus {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: #e2c449;
+    background-color: #47727b;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+
+
+.buttonBus:hover {
+  opacity: 0.7;
+}
+
+
+/*  */
 #contextMenu {
     position: absolute;
     display: none;
@@ -215,7 +265,7 @@ textarea {
 .logoMain {
     width: 20%;
     display: block;
-    margin: 2% 0% 1% 40%;
+    margin: 2% 0% 2% 40%;
     content: url(/static/logoW.png);
 }
 
@@ -334,9 +384,10 @@ h6 {
 }
 
 .button3 {
-    background-color: #ff4d55;
-    color: white;
+    background-color: #e8b856;
+    color: #a64242;
     /* border: 2px solid #9c9c7b; */
+    font-weight: 400;
 }
 
 .button4 {
@@ -431,7 +482,7 @@ h5 {
 #p1 h4 {
     content: "The Developer";
     /* color: #e2c449; */
-    color: #ffffff;
+    color: #e7b856;
     font-size: 1.5em;
     text-align: center;
     letter-spacing: 1px;
@@ -894,7 +945,6 @@ a {
     #p1 h4 {
         content: "The Developer";
         /* color: #e2c449; */
-        color: #e65154;
         /* font-size: 1.5em; */
         text-align: center;
         letter-spacing: 1px;

@@ -49,7 +49,7 @@ def create_the_table_all():
     for k,v in data.items():
         for y,k in v.items():
             if k['active'] is True:
-                table += "<button id='resultRow' class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "<br>" + "<span class='busdesc'>" + str(k["busDesc"][0:75]+'...') +"</span>" + "</button>"
+                table += "<button name='resultRow' class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "<br>" + "<span class='busdesc'>" + str(k["busDesc"][0:75]+'...') +"</span>" + "</button>"
                 table += "<div class='content'>"
                 table += '''<table>
                             <thead>
@@ -94,7 +94,7 @@ def create_the_table(county):
                 ''' %(county)
     for y,k in x.items():
         if k['active'] is True:
-            table += "<button class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + str(k["busDesc"][0:75]+'...') + "</button>"
+            table += "<button name='resultRow' class='filterDiv collapsible "+ str(k["busSector"]) +"'>" + str(k["name"]) + "<br>" + "<span class='busdesc'>" + str(k["busDesc"][0:75]+'...') +"</span>" + "</button>"
             table += "<div class='content'>"
             table += '''<table>
                     <thead>
@@ -125,6 +125,28 @@ def create_the_table(county):
             table += "</div>"
     return table
 
+
+def create_the_table_all_card():
+    r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
+    data = r.json()
+    
+    table = ""
+    for k,v in data.items():
+        for y,k in v.items():
+            if k['active'] is True:
+                table += '''
+                <div class="busCard" name='resultRow' class='filterDiv collapsible ''' +  str(k["busSector"]) + "'" +'''>
+                    <br>
+                <span class="busName">''' + str(k["name"]) + '''</span>
+                <span class="busTitle">''' + str(k["busDesc"][0:75]) + '''</span>
+                <button class="buttonBus">Contact</button>
+                </div>
+                '''
+    return table
+
+
+
+
 @app.route("/")
 def route():
     return render_template("index.html" )
@@ -135,7 +157,7 @@ def result():
     select = request.args.get('countySearch')
     print(select)
     if select == 'all':
-        table = create_the_table_all()
+        table = create_the_table_all_card()
     else:
         table= create_the_table(select)
     return render_template("result2.html" , select=select , table=table)

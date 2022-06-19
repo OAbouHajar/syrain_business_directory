@@ -49,7 +49,7 @@ function myFunction() {
     var input, filter, ul, li, a, i, txtValue;
     input = document.getElementById("myInput");
     filter = input.value.toUpperCase();
-    ul = document.getElementsByTagName("button");
+    ul = document.getElementsByName("resultRow");
     for (i = 0; i < ul.length; i++) {
         a = ul[i].textContent;
         if (a.toUpperCase().includes(filter)) {
