@@ -144,15 +144,6 @@ only screen and (max-width: 760px),
 
 
 
-
-.filterDiv {
-  display: none;
-}
-
-.show {
-  display: block;
-}
-
 .container {
   margin-top: 20px;
   overflow: hidden;
@@ -179,6 +170,89 @@ only screen and (max-width: 760px),
 }
 
 
+/* The Modal (background) */
+.modal {
+  display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    /* background-color: rgb(0,0,0); */
+    background-color: rgb(22 33 36 / 86%);
+  }
+
+/* Modal Content */
+.modal-content {
+  background-color: #ffffff;
+    margin: auto;
+    padding: 20px;
+    border: 2px solid #2d7485;
+    width: 60%;
+    border-radius: 10px;
+  }
+
+/* The Close Button */
+.close {
+  color: #ec0000;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    opacity: 0.7;
+  }
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.category img {
+  position: relative;
+    top: 14px;
+    width: 40px;
+    /* margin-top: 1%;*/
+  }
+
+@media only screen and (max-width: 750px){
+  .buttonBus {
+    margin-left: 0%;
+    margin-top: -4%;
+    width: 100%;
+  }
+  .busCard {
+    box-shadow: 6px 4px 14px 0px rgb(0 0 0 / 39%);
+    max-width: 342px;
+    width: 47.5%;
+    height: 236px;
+    text-align: center;
+    font-family: arial;
+    display: inline-table;
+    /* margin-left: 0.5px; */
+    /* margin-right: 0.5%; */
+    margin: 4% 1% 0.5% 0.5%;
+    background-color: white;
+    display: none;
+    border-radius: 15px 15px 15px 15px;
+    /* margin-bottom: 3%;*/
+    }
+  .busName {
+    color: #000000;
+    /* text-align: center; */
+    font-size: 20px;
+    /* font-family: 'Montserrat', sans-serif; */
+    /* font-weight: 500; */
+}
+
+
+
+
+
+}
 
 
 
@@ -223,6 +297,35 @@ for (i = 0; i < coll.length; i++) {
   });
 }
 filterSelection("all")
+
+function cardDetails(modelVar, btnVar, closeVar){
+    // Get the modal
+    var x = modelVar;
+    var modal = document.getElementById(x);
+
+    // Get the button that opens the modal
+    var btn = document.getElementById(btnVar);
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName(closeVar)[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+      modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+}
 
  </script>
 

@@ -125,23 +125,101 @@ def create_the_table(county):
             table += "</div>"
     return table
 
+def get_icon_path(cat):
+    paths = {
+      "all":"/static/filter/all.png",
+      "Car Maintenance":"/static/filter/mechanic.png",
+      "Accountant":"/static/filter/accounts.png",
+      "House":"/static/filter/wholesale.png",
+      "Shopping":"/static/filter/grocy.png",
+      "Restaurants":"/static/filter/retails.png",
+      "Transportation":"/static/filter/van.png",
+      "Handy":"/static/filter/handy.png",
+      "Translation": "/static/filter/translate.png"
+    }
+
+    return paths[cat]
+
+def create_the_table_card(county):
+    url = "https://dalily-sy.firebaseio.com/locations/%s.json" % (county)
+    r = requests.get(url)
+    x = r.json()
+
+    table = ""
+    table += "<div class='busAll'>"
+
+    if x is None:
+        return '''<script>
+                alert("NO DATA FOR %s !");
+                window.location.href = "/";
+                </script>
+                ''' %(county)
+    for y,k in x.items():
+            yshortM = y[1:10]+"model"
+            yshortB = y[1:10]+"btn"
+            if k['active'] is True:
+                table += '''
+                <div  name='resultRow' class='busCard filterDiv ''' +  str(k["busSector"]) + "'" +'''>
+                <span class="category"><img src=''' + get_icon_path(str(k["busSector"])) + ''' > </span>
+                <span class="busName">''' + str(k["name"]) + '''</span>
+                <span class="busTitle">''' + str(k["busDesc"][0:35]) + '''</span>
+                <div class="busButton">
+                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'close'"+ ''')">More info</button>
+                </div>
+                </div>
+                
+                <div id="'''+ yshortM +'''" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                            <span class="modelData"> County:''' +  str(k["countesAdd"]) + '''"</span>"
+                            <span class="modelData"> Name:''' + str(k["name"]) + '''"</span>"
+                            <span class="modelData">  PHONE:''' + str(k["phone"]) + '''"</span>"
+                            <span class="modelData">  Sectore:''' + str(k["busSector"]) + '''"</span>"
+                            <span class="modelData"> LINK: <a class='aTable' href='{link}'>{link}</a>"'''.format(link=str(k["googleUrl"]))+'''"</span>"
+                            <span class="modelData"> Hire: ''' + str(k["syrianHire"]) + '''"</span>"
+                            <span> Description: ''' + str(k["busDesc"]) + '''"</span>"
+                    </div>
+                </div>
+                '''
+    table += "</div>"
+    return table
+
 
 def create_the_table_all_card():
     r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
     data = r.json()
     
     table = ""
+    table += "<div class='busAll'>"
     for k,v in data.items():
         for y,k in v.items():
+            yshortM = y[1:10]+"model"
+            yshortB = y[1:10]+"btn"
             if k['active'] is True:
                 table += '''
-                <div class="busCard" name='resultRow' class='filterDiv collapsible ''' +  str(k["busSector"]) + "'" +'''>
-                    <br>
+                <div  name='resultRow' class='busCard filterDiv ''' +  str(k["busSector"]) + "'" +'''>
+                <span class="category"><img src=''' + get_icon_path(str(k["busSector"])) + ''' > </span>
                 <span class="busName">''' + str(k["name"]) + '''</span>
-                <span class="busTitle">''' + str(k["busDesc"][0:75]) + '''</span>
-                <button class="buttonBus">Contact</button>
+                <span class="busTitle">''' + str(k["busDesc"][0:35]) + '''</span>
+                <div class="busButton">
+                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'close'"+ ''')">More info</button>
+                </div>
+                </div>
+                
+                <div id="'''+ yshortM +'''" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                            <span class="modelData"> County:''' +  str(k["countesAdd"]) + '''"</span>"
+                            <span class="modelData"> Name:''' + str(k["name"]) + '''"</span>"
+                            <span class="modelData">  PHONE:''' + str(k["phone"]) + '''"</span>"
+                            <span class="modelData">  Sectore:''' + str(k["busSector"]) + '''"</span>"
+                            <span class="modelData"> LINK: <a class='aTable' href='{link}'>{link}</a>"'''.format(link=str(k["googleUrl"]))+'''"</span>"
+                            <span class="modelData"> Hire: ''' + str(k["syrianHire"]) + '''"</span>"
+                            <span> Description: ''' + str(k["busDesc"]) + '''"</span>"
+                    </div>
                 </div>
                 '''
+    table += "</div>"
     return table
 
 
@@ -159,7 +237,7 @@ def result():
     if select == 'all':
         table = create_the_table_all_card()
     else:
-        table= create_the_table(select)
+        table= create_the_table_card(select)
     return render_template("result2.html" , select=select , table=table)
 
 @app.route("/addBusiness")
