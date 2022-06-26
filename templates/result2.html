@@ -150,24 +150,7 @@ only screen and (max-width: 760px),
 }
 
 /* Style the buttons */
-.btn {
-  border: none;
-    outline: none;
-    padding: 9px 12px;
-    background-color: #ffffff;
-    cursor: pointer;
-    font-size: 15px;
-    border-radius: 22px;
-}
 
-.btn:hover {
-  background-color: #ec4444;
-}
-
-.btn.active {
-  background-color: #ec4444;
-  color: white;
-}
 
 
 /* The Modal (background) */
@@ -307,7 +290,7 @@ function cardDetails(modelVar, btnVar, closeVar){
     var btn = document.getElementById(btnVar);
 
     // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName(closeVar)[0];
+    var span = document.getElementById(closeVar);
 
     // When the user clicks the button, open the modal 
     btn.onclick = function() {

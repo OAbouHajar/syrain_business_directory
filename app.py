@@ -1,3 +1,4 @@
+from operator import truediv
 from flask import Flask, render_template, request, redirect, url_for, session, jsonify
 import requests
 import time
@@ -135,7 +136,13 @@ def get_icon_path(cat):
       "Restaurants":"/static/filter/retails.png",
       "Transportation":"/static/filter/van.png",
       "Handy":"/static/filter/handy.png",
-      "Translation": "/static/filter/translate.png"
+      "Translation": "/static/filter/translate.png",
+      "County": "/static/contant/border.png",
+      "Phone": "/static/contant/phone.png",
+      "Link": "/static/contant/link.png",
+      "Hire": "/static/contant/hire.png",
+      "Description": "/static/contant/description.png",
+      "Sectore":"/static/contant/sectore.png",
     }
 
     return paths[cat]
@@ -157,6 +164,7 @@ def create_the_table_card(county):
     for y,k in x.items():
             yshortM = y[1:10]+"model"
             yshortB = y[1:10]+"btn"
+            yshortC = y[1:10]+"close"
             if k['active'] is True:
                 table += '''
                 <div  name='resultRow' class='busCard filterDiv ''' +  str(k["busSector"]) + "'" +'''>
@@ -164,20 +172,34 @@ def create_the_table_card(county):
                 <span class="busName">''' + str(k["name"]) + '''</span>
                 <span class="busTitle">''' + str(k["busDesc"][0:35]) + '''</span>
                 <div class="busButton">
-                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'close'"+ ''')">More info</button>
+                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'" + yshortC + "'"+ ''')">More info</button>
                 </div>
                 </div>
                 
                 <div id="'''+ yshortM +'''" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                            <span class="modelData"> County:''' +  str(k["countesAdd"]) + '''"</span>"
-                            <span class="modelData"> Name:''' + str(k["name"]) + '''"</span>"
-                            <span class="modelData">  PHONE:''' + str(k["phone"]) + '''"</span>"
-                            <span class="modelData">  Sectore:''' + str(k["busSector"]) + '''"</span>"
-                            <span class="modelData"> LINK: <a class='aTable' href='{link}'>{link}</a>"'''.format(link=str(k["googleUrl"]))+'''"</span>"
-                            <span class="modelData"> Hire: ''' + str(k["syrianHire"]) + '''"</span>"
-                            <span> Description: ''' + str(k["busDesc"]) + '''"</span>"
+                    <div class="result">
+                        <span class='close' id="''' + yshortC +'''">&times;</span>
+                        <span class="searchResultsInfo"> The Search results For : </span>
+                        <span id="resultsLableInfo" class=" resultsLableInfo ">   &nbsp;&nbsp;''' + str(k["name"]) + '''  </span>
+                        <br>
+                        <hr>
+                            <label> <img class="resultInfoImg" src=''' + get_icon_path("County") + ''' >  County:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' +  str(k["countesAdd"]) + '''</span>
+                            <hr>
+                            <label> <img class="resultInfoImg" src=''' + get_icon_path("Phone") + ''' > Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable "><a class='aTable' href="tel:{phone}">{phone}</a>'''.format(phone=str(k["phone"]))+'''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Sectore") + ''' > Sectore:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' + str(k["busSector"]) + '''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Link") + ''' > Link:&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable "> <a class='aTable' href='{link}' target="_blank">Click Here</a>'''.format(link=str(k["googleUrl"]))+'''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Hire") + ''' > Hire:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' + str(k["syrianHire"]) + '''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Description") + ''' > Description:</label>
+                            <span class="modelData  resultsLable ">''' + str(k["busDesc"]) + '''</span>
                     </div>
                 </div>
                 '''
@@ -185,7 +207,7 @@ def create_the_table_card(county):
     return table
 
 
-def create_the_table_all_card():
+def create_the_table_all_card(notManager = True):
     r = requests.get("https://dalily-sy.firebaseio.com/locations.json")
     data = r.json()
     
@@ -195,27 +217,42 @@ def create_the_table_all_card():
         for y,k in v.items():
             yshortM = y[1:10]+"model"
             yshortB = y[1:10]+"btn"
-            if k['active'] is True:
+            yshortC = y[1:10]+"close"
+            if k['active'] is notManager:
                 table += '''
                 <div  name='resultRow' class='busCard filterDiv ''' +  str(k["busSector"]) + "'" +'''>
                 <span class="category"><img src=''' + get_icon_path(str(k["busSector"])) + ''' > </span>
                 <span class="busName">''' + str(k["name"]) + '''</span>
                 <span class="busTitle">''' + str(k["busDesc"][0:35]) + '''</span>
                 <div class="busButton">
-                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'close'"+ ''')">More info</button>
+                    <button id="'''+ yshortB +'''" class="buttonBus" onclick="cardDetails(''' + "'"+ yshortM + "'"+ "," + "'"+ yshortB +"'"+ "," + "'" + yshortC + "'"+ ''')">More info</button>
                 </div>
                 </div>
                 
                 <div id="'''+ yshortM +'''" class="modal">
-                    <div class="modal-content">
-                        <span class="close">&times;</span>
-                            <span class="modelData"> County:''' +  str(k["countesAdd"]) + '''"</span>"
-                            <span class="modelData"> Name:''' + str(k["name"]) + '''"</span>"
-                            <span class="modelData">  PHONE:''' + str(k["phone"]) + '''"</span>"
-                            <span class="modelData">  Sectore:''' + str(k["busSector"]) + '''"</span>"
-                            <span class="modelData"> LINK: <a class='aTable' href='{link}'>{link}</a>"'''.format(link=str(k["googleUrl"]))+'''"</span>"
-                            <span class="modelData"> Hire: ''' + str(k["syrianHire"]) + '''"</span>"
-                            <span> Description: ''' + str(k["busDesc"]) + '''"</span>"
+                    <div class="result">
+                        <span class='close' id="''' + yshortC +'''">&times;</span>
+                        <span class="searchResultsInfo"> The Search results For : </span>
+                        <span id="resultsLableInfo" class=" resultsLableInfo ">   &nbsp;&nbsp;''' + str(k["name"]) + '''  </span>
+                        <br>
+                        <hr>
+                            <label> <img class="resultInfoImg" src=''' + get_icon_path("County") + ''' >  County:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' +  str(k["countesAdd"]) + '''</span>
+                            <hr>
+                            <label> <img class="resultInfoImg" src=''' + get_icon_path("Phone") + ''' > Phone:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' + str(k["phone"]) + '''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Sectore") + ''' > Sectore:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' + str(k["busSector"]) + '''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Link") + ''' > Link:&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable "> <a class='aTable' href='{link}'>{link}</a>"'''.format(link=str(k["googleUrl"]))+'''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Hire") + ''' > Hire:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                            <span class="modelData  resultsLable ">''' + str(k["syrianHire"]) + '''</span>
+                            <hr>
+                            <label><img class="resultInfoImg" src=''' + get_icon_path("Description") + ''' > Description:</label>
+                            <span class="modelData  resultsLable ">''' + str(k["busDesc"]) + '''"</span>
                     </div>
                 </div>
                 '''
@@ -239,6 +276,11 @@ def result():
     else:
         table= create_the_table_card(select)
     return render_template("result2.html" , select=select , table=table)
+
+@app.route("/manager")
+def add_business_after():
+    table = create_the_table_all_card(False)
+    return render_template("result2Manager.html", select="NOT ACTIVE" , table=table)
 
 @app.route("/addBusiness")
 def add_business():
@@ -268,12 +310,12 @@ def add_business_process():
     "busDesc": request.form.get('busDesc'),
     "syrianHire": request.form.get('syrianHire'),
     "agree" : request.form.get('agree'),
-    "active": True
+    "active": False
     }
     print(data)
     add_data_to_db(countesAdd,data)
-
-    return render_template("index.html" )
+    
+    return render_template("addBusinessAfter.html" )
 
 
 

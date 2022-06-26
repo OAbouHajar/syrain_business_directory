@@ -117,7 +117,28 @@ body {
 }
 
 /* Text between <hr> tag */
+.btn {
+    border: none;
+      outline: none;
+      padding: 9px 12px;
+      background-color: #ffffff;
+      cursor: pointer;
+      font-size: 15px;
+      border-radius: 22px;
+  }
+  
+  .btn:hover {
+    background-color: #ec4444;
+  }
+  
+  .btn.active {
+    background-color: #ec4444;
+    color: white;
+  }
 
+.mainFilter {
+    color: #000;
+}
 
 /* Glyph, by Harry Roberts */
 
@@ -417,7 +438,7 @@ h6 {
 
 .buttonBack {
     display: block;
-    margin: auto;
+    margin: 0% auto 3% auto;
 }
 
 .buttonAlignContactFrom {
@@ -509,13 +530,34 @@ h5 {
 #pus h4 {
     text-align: center;
     letter-spacing: 1px;
-    font-size: 56px;
+    font-size: 35px;
     font-family: 'Montserrat', sans-serif;
-    color: #ff4d55;
+    color: #fec347;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-top: 4%;
+    margin-bottom: 2%;
+}
+#pusafter h4 {
+    text-align: center;
+    letter-spacing: 1px;
+    font-size: 35px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fec347;
     text-transform: uppercase;
     font-weight: 500;
     margin-top: 2%;
     margin-bottom: 2%;
+}
+
+
+.addafterdata {
+    /* margin-top: 1%; */
+    border: 1px dashed #d6961f;
+    border-radius: 10px 35px 36px 50px;
+    width: 66%;
+    /* margin-bottom: 5%; */
+    margin: 3% auto 3% auto;
 }
 
 #pus h5 {
@@ -580,9 +622,11 @@ p {
 }
 
 .result {
+    font-family: 'Lato', sans-serif;
+
     display: block;
     margin: auto;
-    background-color: rgb(56 62 64 / 85%);
+    background-color: rgb(255 255 255);
     border-radius: 12px;
     padding: 2% 2%;
     width: 50%;
@@ -600,14 +644,29 @@ p {
     border: 2px solid #b39004;
 }
 .result label {
-    color: aliceblue;
+    color: black;
     margin-right: 25%;
-    font-size: medium;
+    margin-left: 3%;
+    font-size: 20px;
+    font-family: 'Lato', sans-serif;
 }
 
 .resultsLable {
-    color: #eac119;
+    color: #c91a13;
     font-size: 19px;
+    font-family: 'Lato', sans-serif;
+
+}
+
+.resultsLableInfo {
+    color: #eac119;
+    font-size: 128%;
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+
+}
+.resultInfoImg{
+    width: 3%;
 }
 
 .loginLable {
@@ -616,8 +675,15 @@ p {
 }
 
 .searchResults {
-    color: rgb(255 255 255);
+    color: white;
     font-size: 26px;
+    position: relative;
+    margin: 2% 0% 2% 0%;
+}
+
+.searchResultsInfo {
+    color: rgb(199 0 0);
+    font-size: 17px;
     position: relative;
     margin: 2% 0% 2% 0%;
 }
@@ -883,7 +949,18 @@ a {
         font-weight: 500;
         font-size: 21px;
 
-}
+    }
+    .searchResultsInfo {
+        /* font-size: large;  */
+        /* margin-top: 18%; */
+        display: block;
+        margin: 8% 0% 4% 0%;
+        /* margin-bottom: 5%; */
+        font-weight: 500;
+        font-size: 21px;
+
+    }
+    
     .buttonBack {
         display: block;
         margin: auto;
@@ -902,6 +979,15 @@ a {
         width: 92%;
         margin-top: 7%;
         margin-bottom: 7%;
+    }
+
+    .addafterdata {
+        /* margin-top: 1%; */
+        border: 1px dashed #d6961f;
+        border-radius: 10px 35px 36px 50px;
+        width: 85%;
+        /* margin-bottom: 5%; */
+        margin: 4% auto 20% auto;
     }
     #myInput {
         background-image: url(/static/searchicon.png);
@@ -997,6 +1083,10 @@ a {
     }
     #pus h4 {
         font-size: 37px;
+    }
+    #pusafter h4 {
+        font-size: 23px;
+        padding: 7% 8% 7% 8%;
     }
     #pus h1 {
         font-size: 20px;

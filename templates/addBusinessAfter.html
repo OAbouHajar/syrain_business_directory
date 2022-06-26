@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block body %}
+
+<div class="pageus">
+    <div class="center" id="pusafter">
+        <!-- <img src="static/logo.png" class="center logo"></img> -->
+        <div class="addafterdata">
+        <h4>Your Request Has Been submitted</h4>
+        <p>
+            سيتم مراجعه طلبك من قبل الادارة، شكراً لمساهمتكم في اغناء الدليل العربي
+        <br>
+        سيتم الموافقه على طلبكم في اسرع وقت، للاستفسار يرجى التواصل مع الادراة
+        </p>
+        <p style="color:blue">Web page redirects after 10 seconds.</p>
+    
+        <form action='/'>
+            <button class=" button button3 buttonBack"> Home </button>
+        </form>
+
+    </div>  
+        <div class="center logoMain"></div>
+    
+    </div>
+</div>
+
+<script>
+    setTimeout(function(){
+       window.location.href = '/';
+    }, 10000);
+ </script>
+
+
+{% endblock %}
